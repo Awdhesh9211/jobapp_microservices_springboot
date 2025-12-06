@@ -31,7 +31,7 @@ public class JobServiceImpl implements JobService {
         List<Job> jobs=jobRepository.findAll();
         return jobs.stream()
                 .map(job -> {
-                    Company company=restTemplate.getForObject("http://localhost:8081/companies/"+job.getComapnyId(), Company.class);
+                    Company company=restTemplate.getForObject("http://COMPANYMS:8081/companies/"+job.getComapnyId(), Company.class);
                     return new JobWithCompanyDTO(job,company);
                 }).collect(Collectors.toList());
     }

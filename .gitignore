@@ -1,0 +1,113 @@
+############################
+# Java & Spring Boot
+############################
+*.class
+*.log
+*.jar
+*.war
+*.ear
+
+# Spring Boot target folder
+/target/
+/build/
+
+# Maven
+.mvn/wrapper/maven-wrapper.jar
+.mvn/wrapper/maven-wrapper.properties
+.mvn/*
+!.mvn/wrapper/maven-wrapper.jar
+!pom.xml
+
+# Gradle
+.gradle/
+**/build/
+!gradle/wrapper/gradle-wrapper.jar
+!gradle/wrapper/gradle-wrapper.properties
+
+############################
+# IDE / Editor files
+############################
+
+# IntelliJ IDEA
+.idea/
+*.iml
+*.ipr
+*.iws
+out/
+
+# Eclipse
+.project
+.classpath
+.settings/
+bin/
+
+# VS Code
+.vscode/
+.history/
+.vscode-test/
+
+############################
+# OS / System files
+############################
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Linux
+*~
+
+############################
+# Logs & Temp Files
+############################
+logs/
+*.log
+*.out
+*.tmp
+*.trace
+
+############################
+# Application specific
+############################
+# Environment files
+*.env
+.env.*
+application-*.yml
+application-*.yaml
+application-*.properties
+!application-example.yml
+!application-example.properties
+
+# Database + misc
+*.db
+*.h2.db
+*.sqlite
+*.mv.db
+*.trace.db
+
+############################
+# Docker / Kubernetes
+############################
+docker-compose.override.yml
+*.pid
+*.seed
+*.pid.lock
+
+############################
+# Other
+############################
+# Cache
+.cache/
+tmp/
+*.swp
+*.bak
+*.orig
+
+# Node modules (if frontend exists)
+frontend/node_modules/

@@ -1,6 +1,7 @@
 package com.awdhx.companyms.company.service;
 
 
+import com.awdhx.companyms.company.dto.ReviewMessage;
 import com.awdhx.companyms.company.entity.Company;
 
 import java.util.List;
@@ -16,4 +17,6 @@ public interface CompanyService {
     Company getCompanyById(Long id);
 
     boolean deleteCompanyById(Long Id);
+
+    public  void updateCompanyReview(ReviewMessage reviewMessage);
 }

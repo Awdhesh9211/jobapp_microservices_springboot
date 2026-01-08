@@ -1,8 +1,11 @@
 package com.awdhx.companyms.company.impl;
 
+import com.awdhx.companyms.company.client.ReviewClient;
+import com.awdhx.companyms.company.dto.ReviewMessage;
 import com.awdhx.companyms.company.entity.Company;
 import com.awdhx.companyms.company.repository.CompanyRepository;
 import com.awdhx.companyms.company.service.CompanyService;
+import jakarta.ws.rs.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,10 +15,16 @@ import java.util.Optional;
 @Service
 public class CompanyServiceImpl implements CompanyService {
 
-    @Autowired
-    private CompanyRepository companyRepository;
 
-//  GET ALL COMPANIES
+    private CompanyRepository companyRepository;
+    private ReviewClient reviewClient;
+
+    public CompanyServiceImpl(CompanyRepository companyRepository, ReviewClient reviewClient) {
+        this.companyRepository = companyRepository;
+        this.reviewClient = reviewClient;
+    }
+
+    //  GET ALL COMPANIES
     @Override
     public List<Company> getAllCompanies() {
        return companyRepository.findAll();
@@ -57,5 +66,22 @@ public class CompanyServiceImpl implements CompanyService {
             return true;
         }
         return false;
+    }
+
+
+
+
+//    update company messaging  called by rabbit mq
+
+    @Override
+    public void updateCompanyReview(ReviewMessage reviewMessage) {
+        System.out.println("Message Operation");
+       Company company=companyRepository.findById(reviewMessage.getCompanyId())
+               .orElseThrow(() -> new NotFoundException("Company Not Found "+reviewMessage.getCompanyId()));
+
+       double averageRating=reviewClient.getAverageRatingForCompany(reviewMessage.getCompanyId());
+       company.setRating(averageRating);
+       companyRepository.save(company);
+
     }
 }

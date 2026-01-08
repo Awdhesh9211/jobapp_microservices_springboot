@@ -1,0 +1,43 @@
+spring:
+  application:
+    name: gateway
+  cloud:
+    gateway:
+      routes:
+        - id: company-service
+          uri: lb://COMPANYMS
+          predicates:
+            - Path=/companies/**
+
+        - id: job-service
+          uri: lb://JOBMS
+          predicates:
+            - Path=/jobs/**
+
+        - id: review-service
+          uri: lb://REVIEWMS
+          predicates:
+            - Path=/reviews/**
+
+server:
+  port: 8080
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+    fetch-registry: true
+    register-with-eureka: true
+  instance:
+      # ? CRITICAL FIX: Use IP address instead of hostname for its own registration
+    prefer-ip-address: false
+    hostname: localhost
+
+management:
+  tracing:
+    sampling:
+      probability: 1.0
+
+logging:
+  level:
+    org.springframework.cloud.gateway: DEBUG

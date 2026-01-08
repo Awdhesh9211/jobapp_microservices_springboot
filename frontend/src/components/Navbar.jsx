@@ -12,7 +12,7 @@ export default function Navbar() {
                 <div className="mr-4 flex flex-1 items-center justify-between">
                     <nav className="flex items-center space-x-6 text-sm font-medium">
                         <Link to="/companies" className="transition-colors hover:text-primary text-muted-foreground">Companies</Link>
-                        <Link to="/jobs" className="transition-colors hover:text-primary text-muted-foreground">Jobs</Link>
+                        <Link to="/job" className="transition-colors hover:text-primary text-muted-foreground">Jobs</Link>
                     </nav>
                     <div className="flex items-center space-x-4">
                         <Button variant="ghost" size="sm">Log In</Button>

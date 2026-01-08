@@ -32,7 +32,7 @@ export default function JobsPage() {
         fetchJobs();
         fetchCompanies();
     }, []);
-
+    console.log(jobs)
     const fetchJobs = async () => {
         try {
             const res = await getAllJobs();
@@ -172,31 +172,31 @@ export default function JobsPage() {
                 </div>
             ) : (
                 <div className="grid gap-4">
-                    {jobs.map(dto => (
-                        <Card key={dto.job.id} className="hover:border-primary/50 transition-colors">
+                    {jobs && jobs.map(dto => (
+                        <Card key={dto.id} className="hover:border-primary/50 transition-colors">
                             <CardHeader>
                                 <div className="flex justify-between items-start">
                                     <div>
-                                        <CardTitle className="text-xl mb-1">{dto.job.title}</CardTitle>
+                                        <CardTitle className="text-xl mb-1">{dto.title}</CardTitle>
                                         <div className="flex items-center text-muted-foreground text-sm gap-4">
                                             <span className="flex items-center gap-1"><Building className="w-4 h-4" /> {dto.company?.name || "Unknown Company"}</span>
-                                            <span className="flex items-center gap-1"><MapPin className="w-4 h-4" /> {dto.job.location}</span>
+                                            <span className="flex items-center gap-1"><MapPin className="w-4 h-4" /> {dto.location}</span>
                                         </div>
                                     </div>
                                     <Button asChild variant="secondary">
-                                        <Link to={`/jobs/${dto.job.id}`}>View Details</Link>
+                                        <Link to={`/job/${dto.id}`}>View Details</Link>
                                     </Button>
                                 </div>
                             </CardHeader>
                             <CardContent>
                                 <CardDescription className="line-clamp-2">
-                                    {dto.job.description}
+                                    {dto.description}
                                 </CardDescription>
                             </CardContent>
                             <CardFooter className="text-sm text-muted-foreground border-t pt-4">
                                 <span className="flex items-center gap-1 text-green-600 font-medium">
                                     <DollarSign className="w-4 h-4" />
-                                    {dto.job.minSalary} - {dto.job.maxSalary}
+                                    {dto.minSalary} - {dto.maxSalary}
                                 </span>
                             </CardFooter>
                         </Card>

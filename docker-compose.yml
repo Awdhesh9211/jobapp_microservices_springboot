@@ -46,6 +46,23 @@ services:
     networks:
       - pgnetwork
 
+#    MY SERVICES
+  companyms:
+    container_name: companyms
+    build:
+      context: ./companyms   # ✅ VERY IMPORTANT
+      dockerfile: Dockerfile
+    ports:
+      - "8081:8081"
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+    depends_on:
+      - postgres
+      - rabbitmq
+      - zipkin
+    networks:
+      - pgnetwork
+
 
 networks:
   pgnetwork:

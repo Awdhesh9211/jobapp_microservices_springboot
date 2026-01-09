@@ -19,7 +19,7 @@ spec:
           image: awdhesh9211/reviewms:latest
           imagePullPolicy: Always
           ports:
-            - containerPort: 8081
+            - containerPort: 8083
           env:
             - name: SPRING_PROFILES_ACTIVE
               value: k8s

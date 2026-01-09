@@ -2,21 +2,21 @@ apiVersion: apps/v1
 kind: deployment
 
 metadata:
-  name: companyms
+  name: reviewms
   labels:
-    app: companyms
+    app: reviewms
 
 spec:
   replicas: 1
   template:
     metadata:
-      name: companyms
+      name: reviewms
       labels:
-        app: companyms
+        app: reviewms
     spec:
       containers:
-        - name: companyms
-          image: awdhesh9211/companyms:latest
+        - name: reviewms
+          image: awdhesh9211/reviewms:latest
           imagePullPolicy: Always
           ports:
             - containerPort: 8081
@@ -26,5 +26,5 @@ spec:
       restartPolicy: Always
   selector:
     matchLabels:
-      app: companyms
+      app: reviewms
 
